@@ -2,17 +2,29 @@
 
 import { Stars } from "@react-three/drei";
 
-export default function Atmosphere() {
+interface AtmosphereProps {
+  nightMode: boolean;
+}
+
+export default function Atmosphere({ nightMode }: AtmosphereProps) {
+  return nightMode ? <NightAtmosphere /> : <DayAtmosphere />;
+}
+
+// ── Night ─────────────────────────────────────────────────────────────────────
+function NightAtmosphere() {
   return (
     <>
-      {/* Night ambient — deep blue */}
-      <ambientLight color="#0c1828" intensity={3} />
+      {/* Scene background */}
+      <color attach="background" args={["#080604"]} />
 
-      {/* Moonlight — cool directional */}
+      {/* Near-zero ambient — fires are the only real source */}
+      <ambientLight color="#1a1208" intensity={0.55} />
+
+      {/* Dim warm fill to reveal rock topology without washing out drama */}
       <directionalLight
-        color="#c0d4f4"
-        intensity={2.2}
-        position={[12, 22, 5]}
+        color="#5a5040"
+        intensity={0.9}
+        position={[6, 20, 4]}
         castShadow
         shadow-mapSize={[2048, 2048]}
         shadow-camera-far={60}
@@ -20,39 +32,51 @@ export default function Atmosphere() {
         shadow-camera-right={20}
         shadow-camera-top={20}
         shadow-camera-bottom={-20}
+        shadow-bias={-0.001}
       />
 
-      {/* Subtle fill from opposite side */}
-      <directionalLight color="#162040" intensity={0.7} position={[-10, 6, -12]} />
+      {/* Counter-fill — keeps far faces slightly readable */}
+      <directionalLight color="#1e1810" intensity={0.35} position={[-8, 8, -10]} />
 
-      {/* Moon sphere */}
-      <mesh position={[14, 24, -20]}>
-        <sphereGeometry args={[2, 32, 32]} />
-        <meshStandardMaterial
-          color="#e4eeff"
-          emissive="#b8cef8"
-          emissiveIntensity={1.4}
-          roughness={0.95}
-          metalness={0}
-        />
-      </mesh>
+      {/* Dense dark warm fog */}
+      <fogExp2 attach="fog" args={["#0e0a06", 0.038]} />
 
-      {/* Moon halo glow */}
-      <pointLight color="#8ab0f0" intensity={4} position={[14, 24, -20]} distance={80} decay={2} />
+      {/* Sparse stars visible through murk */}
+      <Stars radius={70} depth={40} count={1800} factor={3} saturation={0} fade speed={0.15} />
+    </>
+  );
+}
 
-      {/* Stars */}
-      <Stars
-        radius={90}
-        depth={60}
-        count={6000}
-        factor={5}
-        saturation={0.15}
-        fade
-        speed={0.25}
+// ── Day ───────────────────────────────────────────────────────────────────────
+function DayAtmosphere() {
+  return (
+    <>
+      {/* Clear sky background */}
+      <color attach="background" args={["#5a8fc4"]} />
+
+      {/* Bright sky ambient — fills all surfaces */}
+      <ambientLight color="#c8ddf0" intensity={3.0} />
+
+      {/* Sun — high from upper right, warm white */}
+      <directionalLight
+        color="#fff6d8"
+        intensity={5.5}
+        position={[14, 28, 8]}
+        castShadow
+        shadow-mapSize={[2048, 2048]}
+        shadow-camera-far={60}
+        shadow-camera-left={-20}
+        shadow-camera-right={20}
+        shadow-camera-top={20}
+        shadow-camera-bottom={-20}
+        shadow-bias={-0.001}
       />
 
-      {/* Exponential distance fog */}
-      <fogExp2 attach="fog" args={["#06090f", 0.022]} />
+      {/* Sky bounce — soft cool light from opposite side */}
+      <directionalLight color="#90b8e0" intensity={1.6} position={[-10, 14, -6]} />
+
+      {/* Light distant haze */}
+      <fogExp2 attach="fog" args={["#b0cce8", 0.010]} />
     </>
   );
 }

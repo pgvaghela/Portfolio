@@ -20,7 +20,7 @@ function buildRocks(): RockData[] {
     const z = (dr(i * 5 + 2) - 0.5) * 26;
     const h = getHeight(x, z);
     // Rocks on mid-to-upper slopes
-    if (h < 0.8 || h > 4.0) continue;
+    if (h < 0.8 || h > 6.5) continue;
     const tooClose = PEAKS_3D.some((p) => {
       const dx = x - p.cx, dz = z - p.cz;
       return Math.sqrt(dx * dx + dz * dz) < 1.4;

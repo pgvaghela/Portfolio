@@ -1,20 +1,35 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { getHeight } from "./terrain-utils";
 
-// Valley between projects and skills
-const CX = -0.5;
-const CZ =  2.8;
-const BASE_Y = getHeight(CX, CZ);
+interface CampfireProps {
+  cx?: number;
+  cz?: number;
+  /** Night = full intensity; Day = barely-visible embers */
+  nightMode?: boolean;
+  /** Small fires (extra ones) use reduced scale + intensity */
+  small?: boolean;
+}
 
-export default function Campfire() {
+export default function Campfire({
+  cx = -0.5,
+  cz =  2.8,
+  nightMode = true,
+  small = false,
+}: CampfireProps) {
+  const baseY = useMemo(() => getHeight(cx, cz), [cx, cz]);
+
   const lightRef  = useRef<THREE.PointLight>(null);
   const flameRef  = useRef<THREE.Mesh>(null);
   const innerRef  = useRef<THREE.Mesh>(null);
   const elapsed   = useRef(0);
+
+  const baseIntensity = nightMode ? (small ? 10 : 16) : 0.4;
+  const lightDist     = small ? 18 : 24;
+  const scale         = small ? 0.72 : 1;
 
   useFrame((_, delta) => {
     elapsed.current += delta;
@@ -26,7 +41,7 @@ export default function Campfire() {
         0.45 * Math.sin(t * 8.1) +
         0.22 * Math.sin(t * 15.3) +
         0.12 * Math.sin(t * 24.7);
-      lightRef.current.intensity = 3.0 * Math.max(0.4, flicker);
+      lightRef.current.intensity = baseIntensity * Math.max(0.5, flicker);
     }
 
     if (flameRef.current) {
@@ -41,7 +56,7 @@ export default function Campfire() {
   });
 
   return (
-    <group position={[CX, BASE_Y, CZ]}>
+    <group position={[cx, baseY, cz]} scale={scale}>
       {/* Log cross */}
       {[0, Math.PI / 2].map((ry, i) => (
         <mesh key={i} position={[0, 0.04, 0]} rotation={[0, ry, Math.PI / 14]}>
@@ -67,44 +82,43 @@ export default function Campfire() {
         <meshStandardMaterial
           color="#ff5c10"
           emissive="#ff3800"
-          emissiveIntensity={3.5}
+          emissiveIntensity={nightMode ? 3.5 : 0.8}
           transparent
-          opacity={0.8}
+          opacity={nightMode ? 0.8 : 0.4}
           side={THREE.DoubleSide}
           depthWrite={false}
         />
       </mesh>
 
-      {/* Inner flame — hotter / brighter */}
+      {/* Inner flame */}
       <mesh ref={innerRef} position={[0, 0.20, 0]}>
         <coneGeometry args={[0.045, 0.28, 6, 1, true]} />
         <meshStandardMaterial
           color="#ffcc00"
           emissive="#ffaa00"
-          emissiveIntensity={6}
+          emissiveIntensity={nightMode ? 6 : 1.5}
           transparent
-          opacity={0.92}
+          opacity={nightMode ? 0.92 : 0.5}
           depthWrite={false}
         />
       </mesh>
 
-      {/* Hot ember glow at base */}
+      {/* Ember glow */}
       <mesh position={[0, 0.04, 0]}>
         <sphereGeometry args={[0.06, 8, 6]} />
         <meshStandardMaterial
           color="#ff6600"
           emissive="#ff4400"
-          emissiveIntensity={4}
+          emissiveIntensity={nightMode ? 4 : 1}
           transparent
           opacity={0.7}
         />
       </mesh>
 
-      {/* Warm point light — flickers */}
-      <pointLight ref={lightRef} color="#ff7830" intensity={3} distance={12} decay={2} />
-
-      {/* Constant ember fill */}
-      <pointLight color="#ff3300" intensity={0.6} distance={4} decay={3} />
+      {/* Primary light */}
+      <pointLight ref={lightRef} color="#ff6818" intensity={baseIntensity} distance={lightDist} decay={2} />
+      {/* Near-field ember */}
+      <pointLight color="#ff2a00" intensity={nightMode ? 4 : 0.2} distance={6} decay={2.5} />
     </group>
   );
 }

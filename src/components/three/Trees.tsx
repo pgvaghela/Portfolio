@@ -19,7 +19,7 @@ function buildTrees(): TreeData[] {
     const z = (dr(i * 3 + 2) - 0.5) * 28;
     const h = getHeight(x, z);
     // Only on lower-mid slopes — not valley floors, not near summits
-    if (h < 0.28 || h > 2.35) continue;
+    if (h < 0.30 || h > 4.0) continue;
     // Keep clear of labeled peak centres
     const tooClose = PEAKS_3D.some((p) => {
       const dx = x - p.cx, dz = z - p.cz;

@@ -3,10 +3,11 @@
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
-import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
+import { EffectComposer, Bloom, Vignette, Noise } from "@react-three/postprocessing";
+import { BlendFunction } from "postprocessing";
 import Terrain from "./Terrain";
 import Atmosphere from "./Atmosphere";
-import Campfire from "./Campfire";
+import Campfires from "./Campfires";
 import Hotspots from "./Hotspots";
 import CameraRig from "./CameraRig";
 import Observatory from "./Observatory";
@@ -17,40 +18,48 @@ import type { PeakId } from "./terrain-utils";
 
 interface MountainCanvasProps {
   onPeakClick: (id: PeakId) => void;
+  nightMode: boolean;
 }
 
-export default function MountainCanvas({ onPeakClick }: MountainCanvasProps) {
+export default function MountainCanvas({ onPeakClick, nightMode }: MountainCanvasProps) {
   return (
     <Canvas
       shadows
       dpr={[1, 1.8]}
       gl={{
         antialias: true,
-        toneMapping: THREE.ACESFilmicToneMapping,
-        toneMappingExposure: 0.85,
+        toneMapping: nightMode ? THREE.ReinhardToneMapping : THREE.ACESFilmicToneMapping,
+        toneMappingExposure: nightMode ? 0.68 : 1.05,
         powerPreference: "high-performance",
       }}
-      style={{ width: "100%", height: "100%", background: "#06090f" }}
+      style={{ width: "100%", height: "100%" }}
     >
-      <PerspectiveCamera makeDefault position={[0, 8, 18]} fov={50} near={0.1} far={200} />
-      <Atmosphere />
+      <PerspectiveCamera makeDefault position={[0, 3, 13]} fov={52} near={0.1} far={200} />
+
+      <Atmosphere nightMode={nightMode} />
       <Terrain />
       <Trees />
       <Rocks />
       <Snow />
-      <Campfire />
+      <Campfires nightMode={nightMode} />
       <Hotspots onPeakClick={onPeakClick} />
       <Observatory />
       <CameraRig />
+
       <EffectComposer>
         <Bloom
-          intensity={1.4}
-          luminanceThreshold={0.55}
-          luminanceSmoothing={0.85}
+          intensity={nightMode ? 2.2 : 0.4}
+          luminanceThreshold={nightMode ? 0.30 : 0.80}
+          luminanceSmoothing={0.75}
           mipmapBlur
-          radius={0.75}
+          radius={0.85}
         />
-        <Vignette eskil={false} offset={0.18} darkness={1.0} />
+        <Vignette eskil={false} offset={0.12} darkness={nightMode ? 1.25 : 0.55} />
+        <Noise
+          premultiply
+          blendFunction={BlendFunction.SOFT_LIGHT}
+          opacity={nightMode ? 0.28 : 0.10}
+        />
       </EffectComposer>
     </Canvas>
   );
