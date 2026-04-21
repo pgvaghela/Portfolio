@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# priyansh's portfolio
 
-## Getting Started
+3d mountain scene built with react three fiber. each peak is a section of my resume — click one and a panel slides up. there's a campfire, falling snow, pine trees, an observatory, and a day/night toggle.
 
-First, run the development server:
+inspired by don toliver's octane site.
+
+## stack
+
+- next.js 16 + typescript
+- react three fiber / drei / postprocessing
+- motion (framer)
+- tailwind v4
+- shadcn/ui
+
+## running it
+
+needs node 20+
 
 ```bash
+nvm use 20   # if needed
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+open [localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## what's in the scene
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 5 interactive peaks — experience, projects, skills, education, contact
+- procedural terrain with fbm + ridged noise for craggy rock faces
+- 4 campfires spread across the range, falling snow, pine trees, rocks
+- observatory on the skills peak — click it to scroll back to top
+- day / night toggle (top right of the mountain section)
+- postprocessing: bloom, vignette, film grain
