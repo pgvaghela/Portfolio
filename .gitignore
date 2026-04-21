@@ -43,3 +43,7 @@ next-env.d.ts
 # python
 __pycache__/
 *.pyc
+
+# Claude Code (local only; not part of the app)
+CLAUDE.md
+.claude/
