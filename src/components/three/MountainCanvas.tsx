@@ -12,6 +12,7 @@ import Hotspots from "./Hotspots";
 import CameraRig from "./CameraRig";
 import Observatory from "./Observatory";
 import Snow from "./Snow";
+import SnowCover from "./SnowCover";
 import Trees from "./Trees";
 import Rocks from "./Rocks";
 import type { PeakId } from "./terrain-utils";
@@ -37,10 +38,11 @@ export default function MountainCanvas({ onPeakClick, nightMode }: MountainCanva
       <PerspectiveCamera makeDefault position={[0, 3, 13]} fov={52} near={0.1} far={200} />
 
       <Atmosphere nightMode={nightMode} />
-      <Terrain />
+      <Terrain nightMode={nightMode} />
       <Trees />
       <Rocks />
       <Snow />
+      <SnowCover />
       <Campfires nightMode={nightMode} />
       <Hotspots onPeakClick={onPeakClick} />
       <Observatory />

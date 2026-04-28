@@ -42,7 +42,7 @@ export default function MountainScene() {
           <motion.p {...line(0)} className="font-mono text-[9px] sm:text-[10px] tracking-[0.5em] text-white/30 uppercase mb-5">
             priyanshsinh vaghela
           </motion.p>
-          <motion.h1 {...line(1)} className="font-heading font-bold text-white leading-none tracking-tight mb-5" style={{ fontSize: "clamp(2.6rem, 5vw + 1.4rem, 6.5rem)" }}>
+          <motion.h1 {...line(1)} className="font-heading font-bold text-white leading-none tracking-tight mb-5" style={{ fontSize: "clamp(3rem, 9vw, 7.5rem)" }}>
             Software Engineer
           </motion.h1>
           <motion.p {...line(2)} className="font-mono text-[9px] sm:text-[10px] tracking-[0.32em] text-white/28 uppercase mb-12">
@@ -66,47 +66,30 @@ export default function MountainScene() {
           </motion.div>
         </div>
 
-        {/* Mountain silhouette peeking up */}
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1.5, duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        >
-          <svg
-            viewBox="0 0 1440 110"
-            preserveAspectRatio="none"
-            style={{ display: "block", width: "100%", height: "90px" }}
-          >
-            {/* Back range — faintest */}
-            <path
-              d="M0,110 L0,88 L110,55 L220,72 L340,32 L460,60 L560,38 L660,65 L720,18 L780,62 L880,35 L980,68 L1080,40 L1180,70 L1300,42 L1400,72 L1440,80 L1440,110 Z"
-              fill="rgba(255,255,255,0.025)"
-            />
-            {/* Front range — slightly brighter */}
-            <path
-              d="M0,110 L60,80 L160,92 L280,58 L400,78 L520,44 L630,72 L720,30 L810,68 L930,52 L1050,80 L1170,48 L1290,78 L1380,56 L1440,82 L1440,110 Z"
-              fill="rgba(255,255,255,0.045)"
-            />
-          </svg>
-        </motion.div>
-
         {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.6, duration: 1.0 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 pointer-events-none z-10"
+          transition={{ delay: 2.4, duration: 1.0 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 pointer-events-none z-10"
         >
-          <span className="font-mono text-[7px] tracking-[0.5em] text-white/22 uppercase">
-            scroll to explore
+          <span className="font-mono text-[7px] tracking-[0.45em] text-white/30 uppercase">
+            scroll
           </span>
           <motion.div
-            animate={{ y: [0, 7, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="text-white/28"
+            animate={{ y: [0, 8, 0], opacity: [0.45, 1, 0.45] }}
+            transition={{ duration: 1.7, repeat: Infinity, ease: "easeInOut" }}
+            style={{
+              width: 38,
+              height: 38,
+              borderRadius: "50%",
+              border: "1px solid rgba(255,255,255,0.22)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <ChevronDown size={18} strokeWidth={1.2} />
+            <ChevronDown size={18} strokeWidth={1.4} style={{ color: "rgba(255,255,255,0.65)" }} />
           </motion.div>
         </motion.div>
 
