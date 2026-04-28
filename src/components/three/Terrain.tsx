@@ -34,27 +34,27 @@ function nightHeightToRGB(y: number): [number, number, number] {
 function dayHeightToRGB(y: number): [number, number, number] {
   const t = Math.min(1, y / MAX_H);
   if (t > 0.78) {
-    // High ridges — light bare rock, almost white
+    // High ridges — dark charcoal with slight warm tint
     const b = Math.min(1, (t - 0.78) / 0.22);
-    return [lerp(0.54, 0.76, b), lerp(0.52, 0.73, b), lerp(0.48, 0.68, b)];
+    return [lerp(0.18, 0.28, b), lerp(0.16, 0.25, b), lerp(0.14, 0.22, b)];
   }
   if (t > 0.50) {
-    // Upper slopes — cool gray-brown rock
+    // Upper slopes — near-black dark rock
     const b = (t - 0.50) / 0.28;
-    return [lerp(0.40, 0.54, b), lerp(0.36, 0.52, b), lerp(0.30, 0.48, b)];
+    return [lerp(0.09, 0.18, b), lerp(0.08, 0.16, b), lerp(0.07, 0.14, b)];
   }
   if (t > 0.25) {
-    // Mid slope — warm earthy brown
+    // Mid slope — very dark gray
     const b = (t - 0.25) / 0.25;
-    return [lerp(0.34, 0.40, b), lerp(0.25, 0.36, b), lerp(0.16, 0.30, b)];
+    return [lerp(0.055, 0.09, b), lerp(0.048, 0.08, b), lerp(0.040, 0.07, b)];
   }
   if (t > 0.07) {
-    // Lower slope — richer brown soil
+    // Lower slope — near black
     const b = (t - 0.07) / 0.18;
-    return [lerp(0.20, 0.34, b), lerp(0.15, 0.25, b), lerp(0.09, 0.16, b)];
+    return [lerp(0.028, 0.055, b), lerp(0.024, 0.048, b), lerp(0.020, 0.040, b)];
   }
-  // Valley floor — dark earth
-  return [0.14, 0.10, 0.06];
+  // Valley floor — true black
+  return [0.018, 0.015, 0.012];
 }
 
 export default function Terrain({ nightMode }: { nightMode: boolean }) {
