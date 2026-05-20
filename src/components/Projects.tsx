@@ -9,12 +9,12 @@ import { SectionLabel } from "@/components/About";
 
 const projects = [
   {
-    title: "LearnPython iOS App",
-    period: "Jul – Aug 2025",
+    title: "Job Application Agent",
+    period: "Apr – May 2026",
     description:
-      "SwiftUI app with interactive Python labs, syntax highlighting, and timed execution limits. Implemented MVVM for progress persistence across 3 levels and 5 categories. CodeMirror via WebView connects to a FastAPI backend for live code execution and progress tracking.",
-    tags: ["Swift", "SwiftUI", "FastAPI", "PostgreSQL", "JWT", "GitHub Actions"],
-    href: "https://github.com/pgvaghela/learn-python-ios",
+      "Agentic loop with Claude API tool use, web search, and iterative refinement over resume and cover letter drafts. Cut per-iteration token cost 90% via prompt caching. Added pgvector RAG for top-k chunk retrieval per JD. React + TypeScript replay dashboard with Overview, Resume Diff, Cover Letter, and Agent Trace tabs.",
+    tags: ["Python", "FastAPI", "Claude API", "React", "TypeScript", "PostgreSQL", "Docker"],
+    href: "https://github.com/pgvaghela/job-application-agent",
     live: null,
     accent: "#3B82F6",
   },
@@ -22,18 +22,18 @@ const projects = [
     title: "Stock Trading Simulator",
     period: "Jun – Jul 2025",
     description:
-      "Spring Boot + WebSocket trade simulator with low-latency order execution and live portfolio streaming. Integrated Alpha Vantage pricing with scheduled refresh and rate-limit handling. Deployed to AWS EC2 + RDS with CloudWatch monitoring.",
-    tags: ["Java", "Spring Boot", "React", "Tailwind", "WebSocket", "Docker", "AWS"],
+      "Spring Boot + WebSocket trade simulator pushing live portfolio updates to React dashboard on every order. JPA schema for 5+ entities with transaction-safe order flows. Alpha Vantage pricing for 30+ tickers with rate-limit backoff. Deployed to AWS EC2 + RDS with CloudWatch monitoring.",
+    tags: ["Java", "Spring Boot", "React", "WebSocket", "Docker", "AWS"],
     href: "https://github.com/pgvaghela/Stock-Trading-Simulator",
     live: null,
     accent: "#10B981",
   },
   {
     title: "ClearView News Dashboard",
-    period: "Feb 2026 – Present",
+    period: "Feb – Apr 2026",
     description:
-      "Dashboard aggregating multi-source headlines with daily trending stories. Story pages cluster coverage of one event and group Left/Center/Right viewpoints side-by-side. Includes bias label explanations and fact-check link integration.",
-    tags: ["Python", "FastAPI", "React", "TypeScript"],
+      "Full-stack dashboard aggregating 50–100 daily articles with bias labels and source links. Ingestion pipeline pulls ~75 articles/day from 8 outlets via NewsAPI with cross-source deduplication. TF-IDF clustering groups articles by topic so the same story across outlets shows as one cluster.",
+    tags: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL"],
     href: "https://github.com/pgvaghela/ClearView-News-Dashboard",
     live: null,
     accent: "#8B5CF6",
@@ -42,7 +42,7 @@ const projects = [
     title: "Sorting Algorithm Optimizer",
     period: "Aug – Oct 2024",
     description:
-      "Full-stack benchmarking tool for datasets of 1M+ records that recommends optimal sorting algorithms based on data distribution. Achieved a 40% reduction in average sort time by dynamically selecting algorithms per dataset profile.",
+      "Benchmarked 4+ sorting algorithms on 1M+ record datasets, recommending optimal choice per data distribution profile. C# ASP.NET Core service captures timings at 10ms intervals. Cut average sort time 40% vs single-algorithm baseline by dynamically selecting algorithm based on dataset features.",
     tags: ["Angular", "TypeScript", "C#", "ASP.NET Core"],
     href: "https://github.com/pgvaghela/Sorting-Algorithm-Optimizer",
     live: null,

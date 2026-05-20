@@ -300,6 +300,16 @@ function EducationContent() {
           </div>
         </div>
 
+        <div className="mb-4">
+          <p className="font-mono text-[9px] tracking-[0.35em] uppercase mb-2.5"
+            style={{ color: "rgba(100,155,255,0.55)" }}>Awards</p>
+          <div className="flex flex-wrap gap-2">
+            {d.awards.map((a) => (
+              <span key={a} className={TAG}>{a}</span>
+            ))}
+          </div>
+        </div>
+
         <div>
           <p className="font-mono text-[9px] tracking-[0.35em] uppercase mb-2.5"
             style={{ color: "rgba(100,155,255,0.55)" }}>Coursework</p>

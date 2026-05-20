@@ -11,8 +11,8 @@ const jobs = [
     period: "May 2025 – Aug 2025",
     location: "Remote",
     description:
-      "Cleaned 2M+ SQL records with pandas and built Airflow ETL DAGs with validation and alerting. Trained NLP/ML models in PyTorch/TensorFlow, improving validation score by 12%. Packaged a FastAPI model service in Docker and deployed to Kubernetes. Built React + D3 dashboards for leadership reporting, cutting manual chart updates.",
-    technologies: ["Python", "SQL", "Airflow", "PyTorch", "TensorFlow", "Docker", "Kubernetes", "React", "D3.js"],
+      "Built zero-disk SFTP-to-S3 ingestion streaming 2M+ rows of Zywave cyber-risk data through BytesIO. Engineered resilient CSV parser and shipped Gemini labeling script tagging vulnerability descriptions with MITRE ATT&CK techniques. Trained PyTorch embedding-pool classifier on 6-class loss-type labels with class weighting to handle long-tail imbalance.",
+    technologies: ["Python", "PyTorch", "pandas", "boto3", "Paramiko", "AWS S3", "Gemini API"],
   },
   {
     role: "Software Engineering Intern",
@@ -20,17 +20,17 @@ const jobs = [
     period: "May 2024 – Aug 2024",
     location: "Boise, ID",
     description:
-      "Built an Angular + C# .NET app used by 200+ everyday users, integrating 10+ REST endpoints into core manufacturing workflows. Implemented 12 REST APIs with Swagger/OpenAPI docs. Improved Azure DevOps CI/CD pipelines and led UAT triage with stakeholders, resolving 50+ issues to unblock production sign-off.",
-    technologies: ["Angular", "C# .NET", "ASP.NET Core", "Azure DevOps", "REST APIs", "Postman", "Swagger"],
+      "Built full stack Angular and C# .NET application used by 200+ daily users, integrating 10+ REST endpoints. Implemented 12 REST APIs with Swagger/OpenAPI docs; resolved 20+ defects in sprint QA. Led UAT triage with stakeholders; resolved 50+ issues to unblock sign-off for production.",
+    technologies: ["Angular", "C# .NET", "Azure DevOps", "Git", "Postman", "Swagger"],
   },
   {
     role: "Teaching Assistant — CS 110",
     company: "University of Arizona",
-    period: "Jan 2024 – Present",
+    period: "Jan 2024 – Dec 2025",
     location: "Tucson, AZ",
     description:
-      "Lead weekly lab sessions for 30+ students, starting with lecture and hands-on Python programming tasks. Hold 4 office hours weekly, grade quizzes and exams, and support students with advanced Python coursework.",
-    technologies: ["Python", "Tutoring", "Curriculum Design"],
+      "Led weekly CS 110 lab sessions of 30+ students, combining short lectures with hands-on Python programming exercises. Held 4 office hours weekly, graded quizzes and exams, and debugged students' Python code one-on-one.",
+    technologies: ["Python", "Tutoring"],
   },
 ];
 
@@ -40,7 +40,8 @@ const education = {
   period: "Aug 2022 – May 2026",
   location: "Tucson, AZ",
   details: "Minors: Entrepreneurship & Innovation, Info Sci & Tech",
-  courses: ["OOP", "Systems Programming", "Algorithms", "Machine Learning", "Discrete Structures"],
+  awards: ["Dean's List (Fall 2025, Spring 2026)", "Academic Distinction (2025–2026)"],
+  courses: ["Object-Oriented Programming", "Systems Programming", "Data Structures", "Algorithms", "Machine Learning"],
 };
 
 export default function Experience() {
@@ -99,8 +100,15 @@ export default function Experience() {
               </div>
             </div>
             <div className="flex flex-wrap gap-1.5 mt-4">
+              {education.awards.map((a) => (
+                <span key={a} className="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">
+                  {a}
+                </span>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-1.5 mt-2">
               {education.courses.map((c) => (
-                <span key={c} className="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">
+                <span key={c} className="text-xs font-mono text-muted-foreground bg-muted/40 px-2 py-0.5 rounded">
                   {c}
                 </span>
               ))}

@@ -5,10 +5,11 @@ import { motion, useInView } from "motion/react";
 import { Badge } from "@/components/ui/badge";
 
 const skills = {
-  Languages: ["Java", "Python", "TypeScript", "JavaScript", "C", "C# (.NET)", "C++", "Swift", "R"],
-  "Frameworks & Libraries": ["Spring Boot", "FastAPI", "React", "Angular", "ASP.NET Core", "SwiftUI", "TensorFlow", "PyTorch"],
-  "Data & Cloud": ["PostgreSQL", "MySQL", "pandas", "NumPy", "Airflow", "Docker", "Kubernetes", "AWS", "Azure DevOps"],
-  "Testing & Tools": ["GitHub Actions", "JUnit", "PyTest", "Postman", "Tableau", "Grafana", "Git", "Linux/Unix"],
+  Languages: ["Python", "TypeScript", "JavaScript", "Java", "C# (.NET)", "C++", "C", "Swift", "SQL", "HTML/CSS"],
+  "Frameworks & Libraries": ["React", "FastAPI", "Spring Boot", "Angular", "ASP.NET Core", "Tailwind", "PyTorch"],
+  "Data & Telemetry": ["PostgreSQL", "MySQL", "pandas", "NumPy", "scikit-learn", "TF-IDF", "data pipelines"],
+  "Cloud & DevOps": ["AWS (EC2, RDS, S3, CloudWatch)", "Docker", "Azure DevOps", "GitHub Actions", "Git", "Linux/Unix"],
+  "Testing & Methods": ["Jest", "JUnit", "PyTest", "Integration Testing", "Postman", "CI/CD", "Agile/Scrum", "SAFe"],
 };
 
 const fadeUp = {
