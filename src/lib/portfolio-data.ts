@@ -133,7 +133,7 @@ export const PEAK_DATA = {
     period: "Aug 2022 – May 2026",
     location: "Tucson, AZ",
     minors: ["Entrepreneurship & Innovation", "Info Sci & Tech"],
-    awards: ["Dean's List (Fall 2025, Spring 2026)", "Academic Distinction (2025–2026)"],
+    awards: ["Dean's List (Spring 2026, 4× total)", "Academic Year Academic Distinction (2023–2024, 2× total)"],
     courses: [
       "Object-Oriented Programming",
       "Systems Programming",
