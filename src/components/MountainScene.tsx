@@ -57,7 +57,7 @@ export default function MountainScene() {
               textShadow: "0 4px 40px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.5)",
             }}
           >
-            Priyanshsinh Vaghela
+            Priyansh Vaghela
           </motion.h1>
           <motion.p {...line(2)} className="font-mono text-[9px] sm:text-[10px] tracking-[0.32em] text-white/45 uppercase mb-12">
             Computer Science&nbsp;·&nbsp;University of Arizona&nbsp;·&nbsp;&#x2019;26
