@@ -47,17 +47,17 @@ export default function MountainScene() {
 
         <div className="text-center px-6 z-10 flex flex-col items-center">
           <motion.p {...line(0)} className="font-mono text-[9px] sm:text-[10px] tracking-[0.5em] text-white/45 uppercase mb-5">
-            priyanshsinh vaghela
+            Software Engineer
           </motion.p>
           <motion.h1
             {...line(1)}
             className="font-heading font-bold text-white leading-none tracking-tight mb-5"
             style={{
-              fontSize: "clamp(3rem, 9vw, 7.5rem)",
+              fontSize: "clamp(2.4rem, 7.6vw, 6.6rem)",
               textShadow: "0 4px 40px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.5)",
             }}
           >
-            Software Engineer
+            Priyanshsinh Vaghela
           </motion.h1>
           <motion.p {...line(2)} className="font-mono text-[9px] sm:text-[10px] tracking-[0.32em] text-white/45 uppercase mb-12">
             Computer Science&nbsp;·&nbsp;University of Arizona&nbsp;·&nbsp;&#x2019;26
