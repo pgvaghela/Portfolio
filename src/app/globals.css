@@ -82,9 +82,12 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading), system-ui, sans-serif;
   }
-  html {
-    scroll-behavior: smooth;
-  }
+  /* Lenis owns scroll smoothing — disable native to prevent double-easing */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+  .lenis.lenis-smooth iframe { pointer-events: none; }
 }
 
 /* Global scrollbar */
@@ -102,6 +105,27 @@
 }
 .modal-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(70, 120, 255, 0.45);
+}
+
+/* Starfield twinkle + galaxy drift (used by Starfield.tsx) */
+@keyframes star-twinkle {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%      { opacity: 0.25; transform: scale(0.65); }
+}
+@keyframes galaxy-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  33%      { transform: translate3d(2.5vw, -1.8vw, 0); }
+  66%      { transform: translate3d(-2vw,  1.5vw, 0); }
+}
+@keyframes galaxy-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(-3vw, 2vw, 0); }
+}
+
+/* Scroll indicator pulse (used in MountainScene hero) */
+@keyframes scroll-ring {
+  0%   { transform: scale(1);   opacity: 0.5; }
+  100% { transform: scale(1.8); opacity: 0;   }
 }
 
 /* Hotspot pulse animation (used inside R3F Html) */
