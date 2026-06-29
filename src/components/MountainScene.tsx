@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import PeakModal from "@/components/PeakModal";
+import { GitHubIcon } from "@/components/icons";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import Starfield from "@/components/Starfield";
 import type { PeakId } from "@/components/three/terrain-utils";
@@ -62,20 +63,31 @@ export default function MountainScene() {
           <motion.p {...line(2)} className="font-mono text-[9px] sm:text-[10px] tracking-[0.32em] text-white/45 uppercase mb-12">
             Computer Science&nbsp;·&nbsp;University of Arizona&nbsp;·&nbsp;&#x2019;26
           </motion.p>
-          <motion.div {...line(3)} className="flex items-center justify-center gap-4">
+          <motion.div {...line(3)} className="flex flex-col items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-4">
+              <LiquidButton
+                size="lg"
+                className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/80 hover:text-white"
+                onClick={() => window.open("/resume.pdf", "_blank")}
+              >
+                Resume
+              </LiquidButton>
+              <LiquidButton
+                size="lg"
+                className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/80 hover:text-white"
+                onClick={() => { window.location.href = "mailto:pgvaghela20@gmail.com"; }}
+              >
+                Email
+              </LiquidButton>
+            </div>
             <LiquidButton
               size="lg"
-              className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/80 hover:text-white"
-              onClick={() => window.open("/resume.pdf", "_blank")}
+              className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/80 hover:text-white gap-2"
+              onClick={() => window.open("https://github.com/pgvaghela", "_blank")}
+              aria-label="GitHub"
             >
-              Resume
-            </LiquidButton>
-            <LiquidButton
-              size="lg"
-              className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/80 hover:text-white"
-              onClick={() => { window.location.href = "mailto:pgvaghela20@gmail.com"; }}
-            >
-              Email
+              <GitHubIcon size={16} />
+              GitHub
             </LiquidButton>
           </motion.div>
         </div>
