@@ -80,15 +80,21 @@ export default function MountainScene() {
                 Email
               </LiquidButton>
             </div>
-            <LiquidButton
-              size="lg"
-              className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/80 hover:text-white gap-2"
+            <button
+              type="button"
               onClick={() => window.open("https://github.com/pgvaghela", "_blank")}
               aria-label="GitHub"
+              className="flex items-center justify-center rounded-full cursor-pointer text-white/85 hover:text-white transition-all duration-300 hover:scale-105"
+              style={{
+                width: 52,
+                height: 52,
+                border: "1px solid rgba(255,255,255,0.45)",
+                background: "rgba(255,255,255,0.04)",
+                backdropFilter: "blur(6px)",
+              }}
             >
-              <GitHubIcon size={16} />
-              GitHub
-            </LiquidButton>
+              <GitHubIcon size={32} />
+            </button>
           </motion.div>
         </div>
 
