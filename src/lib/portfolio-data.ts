@@ -14,12 +14,30 @@ export const PEAK_DATA = {
     subtitle: "Things I've built",
     items: [
       {
+        title: "F1 Dashboard",
+        period: "May – Jun 2026",
+        description:
+          "Full-stack Formula 1 analytics platform deployed across Vercel, Render, and Neon with multi-source data ingestion. Diagnosed OOM kills on a 512MB Render container loading full races into pandas and moved ingest off-platform to fix it. Trained an ML.NET FastTree winner predictor with leak-free walk-forward validation after catching in-sample memorization. Built a Python/FastF1 telemetry pipeline ingesting 160K+ samples per race with SVG coordinate normalization for replay.",
+        tags: ["Angular 19", "C# / ASP.NET Core 9", "PostgreSQL", "ML.NET", "Python", "Docker"],
+        github: "https://github.com/pgvaghela/f1-dashboard",
+        live: "https://f1-dashboard-dusky-sigma.vercel.app",
+      },
+      {
         title: "Job Application Agent",
         period: "Apr – May 2026",
         description:
           "Agentic loop with Claude API tool use, web search, and iterative refinement over resume and cover letter drafts. Cut per-iteration token cost 90% via prompt caching. Added pgvector RAG for top-k chunk retrieval per JD. Includes React + TypeScript replay dashboard with Overview, Resume Diff, Cover Letter, and Agent Trace tabs.",
         tags: ["Python", "FastAPI", "Claude API", "React", "TypeScript", "PostgreSQL", "Docker"],
         github: "https://github.com/pgvaghela/job-application-agent",
+        live: null,
+      },
+      {
+        title: "Stock Trading Simulator (C++)",
+        period: "Jun – Jul 2025",
+        description:
+          "Rewrote the backend in C++17 with a Crow WebSocket server and SQLite repos using prepared statements with RETURNING. Built a mutex-synchronized matching engine with priority-queue buy and sell books, persisting trades on each match. Polls Alpha Vantage for 5 tickers on a 60s background thread with a 5-min cache, rate-limit fallback, and WebSocket fan-out. Publishes OrdersPerMinute to CloudWatch via the AWS C++ SDK behind a HAVE_AWS_SDK ifdef with stdout fallback.",
+        tags: ["C++17", "Crow", "SQLite", "AWS C++ SDK", "CloudWatch", "React", "Docker"],
+        github: "https://github.com/pgvaghela/Stock-Trading-Simulator",
         live: null,
       },
       {
