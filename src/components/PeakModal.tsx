@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useLenis } from "lenis/react";
 import { X, ExternalLink, Mail, MapPin } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
 import { PEAK_DATA, PeakId } from "@/lib/portfolio-data";
@@ -29,6 +31,18 @@ export default function PeakModal({
   onClose: () => void;
 }) {
   const data = PEAK_DATA[peakId];
+  const lenis = useLenis();
+
+  // Lock background scrolling (Lenis + native) while the modal is open.
+  useEffect(() => {
+    lenis?.stop();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      lenis?.start();
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [lenis]);
 
   return (
     <AnimatePresence>
@@ -108,7 +122,10 @@ export default function PeakModal({
           </div>
 
           {/* ── Scrollable body ──────────────────────────────────────────── */}
-          <div className="overflow-y-auto px-7 py-6 flex-1 modal-scroll">
+          <div
+            data-lenis-prevent
+            className="overflow-y-auto overscroll-contain px-7 py-6 flex-1 modal-scroll"
+          >
             {peakId === "projects"   && <ProjectsContent />}
             {peakId === "experience" && <ExperienceContent />}
             {peakId === "skills"     && <SkillsContent />}
